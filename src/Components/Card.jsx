@@ -1,7 +1,10 @@
-const Card = () => {
+const Card = ({ animal }) => {
     return (
-        <div>Card</div>
+        <>
+        <h2>Un gusto {animal.nombre}, sos un {animal.especie} muy bueno!</h2>
+        
+        </>
     )
 }
 
-export default Card
+export default Card 

@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Card from "./Components/Card";
+import Error from "./Components/Error";
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [animal, setAnimal] = useState({
+    especie: "",
+    nombre: "",
+});
+
+const [show, setShow] = useState(false);
+const [error, setError] = useState(false);
+
+const handleSubmit = (event) => {
+    event.preventDefault();
+    if (animal.especie.trim().length > 3 && animal.nombre.trim().length < 6) {
+    setShow(true);
+    setError(false);
+    } else {
+    setError(true);
+    setShow(false);
+    }
+};
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div >
+      <h1>¿Que animal sos?</h1>
+      <>
+        <form onSubmit={handleSubmit} style={{ backgroundColor: "grey" }}>
+        <label>Especie::</label>
+        <input
+            type="text"
+            value={animal.especie}
+            onChange={(event) =>
+            setAnimal({ ...animal, especie: event.target.value })
+            }
+        />
+        <label>Tu nombre:</label>
+        <input
+            type="text"
+            value={animal.nombre}
+            onChange={(event) =>
+            setAnimal({ ...animal, nombre: event.target.value })
+            }
+            />
+            <button type="submit" style={{ backgroundColor: "green" }}>GUARDAR ANIMAL</button>
+        </form>
+        {show && <Card animal={animal} />}
+        {error && <Error />}
+        </>
+    </div>
+  );
 }
 
-export default App
+export default App;
