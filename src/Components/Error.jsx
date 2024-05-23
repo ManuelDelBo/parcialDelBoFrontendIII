@@ -10,7 +10,7 @@ const Error = () => {
         -La especie debe ser mayor a 3 caracteres.
         </h4>
         <h4>
-        -El nombre debe tener un maximo de 6 caracteres.
+        -El nombre debe ser mayor a 6 caracteres.
         </h4>
     </div>
     );

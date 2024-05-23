@@ -14,7 +14,7 @@ const [error, setError] = useState(false);
 
 const handleSubmit = (event) => {
     event.preventDefault();
-    if (animal.especie.trim().length > 3 && animal.nombre.trim().length < 6) {
+    if (animal.especie.trim().length >= 3 && animal.nombre.trim().length >= 6) {
     setShow(true);
     setError(false);
     } else {
